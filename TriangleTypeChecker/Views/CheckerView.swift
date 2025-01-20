@@ -14,6 +14,9 @@ struct CheckerView: View {
     @State var givenInputB = ""
     @State var givenInputC = ""
     
+    // Guess Made
+    @State var inputMade = ""
+    
     // Feedback on user
     @State var feedback = ""
     
@@ -31,14 +34,38 @@ struct CheckerView: View {
                 Text ("Enter the Side Length C")
                 TextField("Enter Side Length C", text: $givenInputC)
                 
-            }
-            
-            .padding()
-            .navigationTitle("Triangle Type Checker")
+                Button {
+                    checkGuess()
+                        } label: {
+                            Text ("Submit Lengths")
+                        }
+                        .buttonStyle(.borderedProminent)
+                          Text(feedback)
+                              .font(
+                                  .custom(
+                                      "BradleyHandITCTT-Bold",
+                                      size: 24.0,
+                                      relativeTo: .title3
+                                  )
+                              )
         }
+                          
+                            .padding()
+                            .navigationTitle("Triangle Type Checker")
+}
+}
+    // MARK: Function
+    func checkGuess() {
+    // Attempt to unwrap the input provided by the user
+    guard let selectedNumber = Int(givenInputA) else {
+        feedback = "Please provide an integer."
+        return
+        }
+        
+        
     }
 }
-
+                          
 #Preview {
     CheckerView()
 }
