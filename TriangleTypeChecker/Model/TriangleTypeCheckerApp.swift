@@ -11,7 +11,7 @@ import SwiftUI
 struct TriangleTypeCheckerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CheckerView()
         }
     }
 }
