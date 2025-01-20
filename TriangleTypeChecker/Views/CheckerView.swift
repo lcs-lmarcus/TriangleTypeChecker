@@ -23,7 +23,7 @@ struct CheckerView: View {
     // MARK: Computed Property
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack (spacing: 20) {
                 // Input of 3 Sides (Strings)
                 Text ("Enter the Side Length A")
                 TextField("Enter Side Length A", text: $givenInputA)
@@ -36,36 +36,40 @@ struct CheckerView: View {
                 
                 Button {
                     checkGuess()
-                        } label: {
-                            Text ("Submit Lengths")
-                        }
-                        .buttonStyle(.borderedProminent)
-                          Text(feedback)
-                              .font(
-                                  .custom(
-                                      "BradleyHandITCTT-Bold",
-                                      size: 24.0,
-                                      relativeTo: .title3
-                                  )
-                              )
+                } label: {
+                    Text ("Submit Lengths")
+                }
+                .buttonStyle(.borderedProminent)
+                Text(feedback)
+                    .font(
+                        .custom(
+                            "BradleyHandITCTT-Bold",
+                            size: 24.0,
+                            relativeTo: .title3
+                        )
+                    )
+            }
+            
+            .padding()
+            .navigationTitle("Triangle Type Checker")
         }
-                          
-                            .padding()
-                            .navigationTitle("Triangle Type Checker")
-}
-}
+    }
     // MARK: Function
     func checkGuess() {
-    // Attempt to unwrap the input provided by the user
-    guard let selectedNumber = Int(givenInputA) else {
-        feedback = "Please provide an integer."
-        return
+        // Attempt to unwrap the input provided by the user
+        guard let selectedNumber = Int(givenInputA), (Int(givenInputB) != nil), (Int(givenInputC) != nil) else {
+            feedback = "Please provide an integer."
+            return
         }
+        if givenInputA == givenInputB && givenInputB == givenInputC && givenInputA == givenInputC {
+            feedback = "It is a equilateral triangle"
+        }
+
         
         
     }
 }
-                          
+
 #Preview {
     CheckerView()
 }
