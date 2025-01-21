@@ -57,12 +57,18 @@ struct CheckerView: View {
     // MARK: Function
     func checkGuess() {
         // Attempt to unwrap the input provided by the user
-        guard let selectedNumber = Int(givenInputA), (Int(givenInputB) != nil), (Int(givenInputC) != nil) else {
+        guard let selectedNumber = Int(givenInputA) else {
             feedback = "Please provide an integer."
             return
         }
+        
+        
         if givenInputA == givenInputB && givenInputB == givenInputC && givenInputA == givenInputC {
             feedback = "It is a equilateral triangle"
+        } else if givenInputA != givenInputB && givenInputA != givenInputC && givenInputB != givenInputC {
+            feedback = "It is a scalene triangle"
+        } else {
+            feedback = "It is a isosceles triangle"
         }
 
         
