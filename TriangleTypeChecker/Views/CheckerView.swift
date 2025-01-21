@@ -15,7 +15,7 @@ struct CheckerView: View {
     @State var givenInputC = ""
     
     // Guess Made
-    @State var inputMade = ""
+    @State var inputMade: [Int] = []
     
     // Feedback on user
     @State var feedback = ""
@@ -36,7 +36,13 @@ struct CheckerView: View {
                 
                 HStack {
                     Button {
+                        let latestResult= Result(
+                            inputA: a
+                            inputB: b
+                            inputC: c
+                        )
                         checkGuess()
+                        
                     } label: {
                         Text ("Submit Lengths")
                     }
@@ -58,6 +64,15 @@ struct CheckerView: View {
                             relativeTo: .title3
                         )
                     )
+                Text ("Input History")
+                ScrollView {
+                    VStack(spacing: 5) {
+                        ForEach(inputMade, id: \.self) { currentGuess in
+                            Text("\(currentGuess)")
+                            Divider()
+                        }
+                    }
+                }
             }
             
             .padding()
@@ -88,6 +103,10 @@ struct CheckerView: View {
         } else {
             feedback = "It is a isosceles triangle"
         }
+        
+        // Save the user's guesses
+        inputMade.append(selectedNumber)
+        
     }
         // MARK: Function Reset
         func resetData () {
