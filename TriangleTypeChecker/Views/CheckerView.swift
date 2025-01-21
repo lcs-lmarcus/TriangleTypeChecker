@@ -34,12 +34,22 @@ struct CheckerView: View {
                 Text ("Enter the Side Length C")
                 TextField("Enter Side Length C", text: $givenInputC)
                 
-                Button {
-                    checkGuess()
-                } label: {
-                    Text ("Submit Lengths")
+                HStack {
+                    Button {
+                        checkGuess()
+                    } label: {
+                        Text ("Submit Lengths")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    Button {
+                        resetData()
+                    } label: {
+                        Text ("Reset Input")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
                 }
-                .buttonStyle(.borderedProminent)
                 Text(feedback)
                     .font(
                         .custom(
@@ -54,15 +64,23 @@ struct CheckerView: View {
             .navigationTitle("Triangle Type Checker")
         }
     }
-    // MARK: Function
+    // MARK: Function Check Guess
     func checkGuess() {
         // Attempt to unwrap the input provided by the user
         guard let selectedNumber = Int(givenInputA) else {
             feedback = "Please provide an integer."
             return
         }
+        guard let selectedNumber = Int(givenInputB) else {
+            feedback = "Please provide an integer."
+            return
+        }
+        guard let selectedNumber = Int(givenInputC) else {
+            feedback = "Please provide an integer."
+            return
+        }
         
-        
+        // Condition Statement
         if givenInputA == givenInputB && givenInputB == givenInputC && givenInputA == givenInputC {
             feedback = "It is a equilateral triangle"
         } else if givenInputA != givenInputB && givenInputA != givenInputC && givenInputB != givenInputC {
@@ -70,9 +88,15 @@ struct CheckerView: View {
         } else {
             feedback = "It is a isosceles triangle"
         }
-
-        
-        
+    }
+        // MARK: Function Reset
+        func resetData () {
+            // Reset all input
+            givenInputA = ""
+            givenInputB = ""
+            givenInputC = ""
+            
+            feedback = ""
     }
 }
 
