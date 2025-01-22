@@ -16,6 +16,9 @@ struct CheckerView: View {
     
     // Guess Made
     @State var inputMade: [Int] = []
+    @State var inputMade2: [Int] = []
+    @State var inputMade3: [Int] = []
+    
     @State var priorResults: [Result] = []
     
     // Feedback on user
@@ -38,6 +41,14 @@ struct CheckerView: View {
                 
                 HStack {
                     Button {
+                        action: do {
+                            let latestResult = Result(
+                                inputA: givenInputA,
+                                inputB: givenInputB,
+                                inputC: givenInputC,
+                                feedback: feedback )
+                            priorResults.append(latestResult)
+                        }
                         checkGuess()
                         
                     } label: {
@@ -68,10 +79,6 @@ struct CheckerView: View {
                             HStack {
                                 ResultView(somePriorResult: currentResult)
                             }
-//                        HStack{
-//                            ForEach(inputMade, id: \.self) { currentGuess in
-//                                Text("\(currentGuess)")
-//                            }
                         }
                     }
                 }
@@ -84,15 +91,15 @@ struct CheckerView: View {
     // MARK: Function Check Guess
     func checkGuess() {
         // Attempt to unwrap the input provided by the user
-        guard let selectedNumber = Int(givenInputA) else {
+        guard let selectedNumber1 = Int(givenInputA) else {
             feedback = "Please provide an integer."
             return
         }
-        guard let selectedNumber = Int(givenInputB) else {
+        guard let selectedNumber2 = Int(givenInputB) else {
             feedback = "Please provide an integer."
             return
         }
-        guard let selectedNumber = Int(givenInputC) else {
+        guard let selectedNumber3 = Int(givenInputC) else {
             feedback = "Please provide an integer."
             return
         }
@@ -107,7 +114,11 @@ struct CheckerView: View {
         }
         
         // Save the user's guesses
-        inputMade.append(selectedNumber)
+
+        
+//        inputMade.append(selectedNumber1)
+//        inputMade2.append(selectedNumber2)
+//        inputMade3.append(selectedNumber3)
         
     }
         // MARK: Function Reset

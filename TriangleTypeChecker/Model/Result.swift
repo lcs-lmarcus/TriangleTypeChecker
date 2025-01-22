@@ -12,11 +12,13 @@ struct Result: Identifiable {
     let inputA: String
     let inputB: String
     let inputC: String
+    let feedback: String
 }
 
 let resultforPreview = Result(
     inputA: "1",
     inputB: "2",
-    inputC: "3"
+    inputC: "3",
+    feedback: "This is an Isoscles triangle"
 )
 
