@@ -9,16 +9,16 @@ import Foundation
 
 struct Result: Identifiable {
     let id = UUID()
-    let inputA: String
-    let inputB: String
-    let inputC: String
+    let a: Int
+    let b: Int
+    let c: Int
     let feedback: String
 }
 
 let resultforPreview = Result(
-    inputA: "1",
-    inputB: "2",
-    inputC: "3",
+    a: 1,
+    b: 2,
+    c: 3,
     feedback: "This is an Isoscles triangle"
 )
 

@@ -14,13 +14,18 @@ struct ResultView: View {
     var body: some View {
         VStack {
             HStack {
-                Text (somePriorResult.inputA)
+                Text ("Side A: ")
+                Text("\(somePriorResult.a)")
                 Spacer()
                     .frame(width: 30)
-                Text (somePriorResult.inputB)
+                
+                Text ("Side B: ")
+                Text ("\(somePriorResult.b)")
                 Spacer()
                     .frame(width: 30)
-                Text (somePriorResult.inputC)
+                
+                Text("Side C: ")
+                Text ("\(somePriorResult.c)")
                 Spacer()
                     .frame(width: 30)
             }

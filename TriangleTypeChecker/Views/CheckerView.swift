@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct CheckerView: View {
+    
     // MARK: Stored Property
     // Input of Side Length
     @State var givenInputA = ""
     @State var givenInputB = ""
     @State var givenInputC = ""
-    
-    // Guess Made
-    @State var inputMade: [Int] = []
-    @State var inputMade2: [Int] = []
-    @State var inputMade3: [Int] = []
+
     
     @State var priorResults: [Result] = []
     
@@ -41,16 +38,7 @@ struct CheckerView: View {
                 
                 HStack {
                     Button {
-                        action: do {
-                            let latestResult = Result(
-                                inputA: givenInputA,
-                                inputB: givenInputB,
-                                inputC: givenInputC,
-                                feedback: feedback )
-                            priorResults.append(latestResult)
-                        }
-                        checkGuess()
-                        
+                        classifyTriangle()
                     } label: {
                         Text ("Submit Lengths")
                     }
@@ -88,48 +76,51 @@ struct CheckerView: View {
             .navigationTitle("Triangle Type Checker")
         }
     }
-    // MARK: Function Check Guess
-    func checkGuess() {
+    
+    // MARK: Functions
+    
+    func classifyTriangle() {
         // Attempt to unwrap the input provided by the user
-        guard let selectedNumber1 = Int(givenInputA) else {
+        guard let sideA = Int(givenInputA) else {
             feedback = "Please provide an integer."
             return
         }
-        guard let selectedNumber2 = Int(givenInputB) else {
+        guard let sideB = Int(givenInputB) else {
             feedback = "Please provide an integer."
             return
         }
-        guard let selectedNumber3 = Int(givenInputC) else {
+        guard let sideC = Int(givenInputC) else {
             feedback = "Please provide an integer."
             return
         }
         
         // Condition Statement
-        if givenInputA == givenInputB && givenInputB == givenInputC && givenInputA == givenInputC {
+        if sideA == sideB && sideB == sideC && sideA == sideC {
             feedback = "It is a equilateral triangle"
-        } else if givenInputA != givenInputB && givenInputA != givenInputC && givenInputB != givenInputC {
+        } else if sideA != sideB && sideA != sideC && sideB != sideC {
             feedback = "It is a scalene triangle"
         } else {
             feedback = "It is a isosceles triangle"
         }
         
         // Save the user's guesses
-
-        
-//        inputMade.append(selectedNumber1)
-//        inputMade2.append(selectedNumber2)
-//        inputMade3.append(selectedNumber3)
-        
+        let latestResult = Result(
+            a: sideA,
+            b: sideB,
+            c: sideC,
+            feedback: feedback
+        )
     }
-        // MARK: Function Reset
-        func resetData () {
-            // Reset all input
-            givenInputA = ""
-            givenInputB = ""
-            givenInputC = ""
-            
-            feedback = ""
-            
+    
+    // MARK: Function Reset
+    func resetData () {
+        // Reset all input
+        givenInputA = ""
+        givenInputB = ""
+        givenInputC = ""
+        
+        feedback = ""
+        
     }
 }
 
