@@ -29,12 +29,15 @@ struct CheckerView: View {
             VStack (spacing: 20) {
                 // Input of 3 Sides (Strings)
                 Text ("Enter the Side Length A")
+                    .font(Font.custom("Gill Sans", size: 22))
                 TextField("Enter Side Length A", text: $givenInputA)
                 
                 Text ("Enter the Side Length B")
+                    .font(Font.custom("Gill Sans", size: 22))
                 TextField("Enter Side Length B", text: $givenInputB)
                 
                 Text ("Enter the Side Length C")
+                    .font(Font.custom("Gill Sans", size: 22))
                 TextField("Enter Side Length C", text: $givenInputC)
                 
                 HStack {
@@ -57,7 +60,7 @@ struct CheckerView: View {
                     .font(
                         .custom(
                             "BradleyHandITCTT-Bold",
-                            size: 24.0,
+                            size: 26.0,
                             relativeTo: .title3
                         )
                     )

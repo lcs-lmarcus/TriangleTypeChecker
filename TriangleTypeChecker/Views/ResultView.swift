@@ -14,23 +14,24 @@ struct ResultView: View {
     var body: some View {
         VStack {
             HStack {
-                Text ("Side A: ")
+                Text ("Side A:")
                 Text("\(somePriorResult.a)")
-                Spacer()
-                    .frame(width: 30)
+                    .padding(.trailing)
+                    
                 
-                Text ("Side B: ")
+                Text ("Side B:")
                 Text ("\(somePriorResult.b)")
-                Spacer()
-                    .frame(width: 30)
+                    .padding(.trailing)
                 
-                Text("Side C: ")
+                Text("Side C:")
                 Text ("\(somePriorResult.c)")
-                Spacer()
-                    .frame(width: 30)
+                    .padding(.trailing)
             }
             
             Text (somePriorResult.feedback)
+                .fontWeight(.semibold)
+                .font(Font.custom("Times New Roman", size: 20.0, relativeTo: .body))
+                
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 15)
