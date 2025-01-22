@@ -16,6 +16,7 @@ struct CheckerView: View {
     @State var givenInputC = ""
 
     
+    // Show the history of calculations
     @State var priorResults: [Result] = []
     
     // Feedback on user
@@ -61,15 +62,12 @@ struct CheckerView: View {
                         )
                     )
                 Text ("Input History")
-                ScrollView {
-                    VStack(spacing: 5) {
-                        List(priorResults.reversed()) { currentResult in
-                            HStack {
-                                ResultView(somePriorResult: currentResult)
-                            }
-                        }
+                List(priorResults.reversed()) { currentResult in
+                    HStack {
+                        ResultView(somePriorResult: currentResult)
                     }
                 }
+                .listStyle(.plain)
             }
             
             .padding()
@@ -110,6 +108,9 @@ struct CheckerView: View {
             c: sideC,
             feedback: feedback
         )
+        
+        // Add it to the array
+        priorResults.append(latestResult)
     }
     
     // MARK: Function Reset
