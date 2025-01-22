@@ -16,9 +16,11 @@ struct CheckerView: View {
     
     // Guess Made
     @State var inputMade: [Int] = []
+    @State var priorResults: [Result] = []
     
     // Feedback on user
     @State var feedback = ""
+    
     
     // MARK: Computed Property
     var body: some View {
@@ -36,11 +38,6 @@ struct CheckerView: View {
                 
                 HStack {
                     Button {
-                        let latestResult= Result(
-                            inputA: a
-                            inputB: b
-                            inputC: c
-                        )
                         checkGuess()
                         
                     } label: {
@@ -67,9 +64,14 @@ struct CheckerView: View {
                 Text ("Input History")
                 ScrollView {
                     VStack(spacing: 5) {
-                        ForEach(inputMade, id: \.self) { currentGuess in
-                            Text("\(currentGuess)")
-                            Divider()
+                        List(priorResults.reversed()) { currentResult in
+                            HStack {
+                                ResultView(somePriorResult: currentResult)
+                            }
+//                        HStack{
+//                            ForEach(inputMade, id: \.self) { currentGuess in
+//                                Text("\(currentGuess)")
+//                            }
                         }
                     }
                 }
@@ -116,6 +118,7 @@ struct CheckerView: View {
             givenInputC = ""
             
             feedback = ""
+            
     }
 }
 

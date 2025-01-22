@@ -7,11 +7,16 @@
 
 import Foundation
 
-struct result: Identifiable {
+struct Result: Identifiable {
     let id = UUID()
-    let inputA: Double
-    let inputB: Double
-    let inputC: Double
+    let inputA: String
+    let inputB: String
+    let inputC: String
 }
 
+let resultforPreview = Result(
+    inputA: "1",
+    inputB: "2",
+    inputC: "3"
+)
 
